@@ -9,14 +9,16 @@ public class Screen {
     }
 
 
+/*
     public void drawRect(float x, float y, float width, float height, float rot,Color color){
+
 
 
             byte red = (byte)(color.getRed()-128);
             byte green = (byte)(color.getGreen()-128);
             byte blue = (byte)(color.getBlue()-128);
-            byte alphafwopkfe = (byte)(color.getAlpha()-128);
-          //  glColor4b(red, green, blue, alpha);
+            byte alpha = (byte)(color.getAlpha()-128);
+            glColor4b(red, green, blue, alpha);
 
 
             glBegin(GL_QUADS);
@@ -27,7 +29,10 @@ public class Screen {
                 glVertex2f(width, 0.0f);
 
             glEnd();
+
+
         }
+        */
 
     }
 

@@ -10,7 +10,8 @@ public class GameScreen extends Screen {
 
     @Override
     public void paint() {
-        drawRect(10,10,40,40,0, Color.CYAN);
+
+        //drawRect(10,10,40,40,0, Color.CYAN);
     }
 
 
