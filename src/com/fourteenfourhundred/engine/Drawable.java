@@ -26,7 +26,7 @@ public class Drawable {
     }
 
     public void tick(){
-        x+=2;
+
     }
 
 

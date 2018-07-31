@@ -8,13 +8,20 @@ import sun.plugin2.util.ColorUtil;
 
 public class GameScreen extends Screen {
 
+    Drawable player;
+
     public GameScreen(){
+        player = new Drawable(10,10,50,50);
+        drawableElements.add(player);
+    }
 
-        for(int i= 0; i<5000; i++){
-           // drawableElements.add(new Drawable(10,10,50,50));
+    public void tick(){
+        super.tick();
 
-        }
-
+        if(isKeyDown(68)){
+           player.setX(player.getX()+1);
+       }
+       
     }
 
 }

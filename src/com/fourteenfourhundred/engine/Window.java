@@ -1,6 +1,7 @@
 package com.fourteenfourhundred.engine;
 
 
+import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.system.MemoryUtil;
 
@@ -40,6 +41,14 @@ public class Window {
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
 
+        glfwSetKeyCallback(window, new GLFWKeyCallback(){
+
+            @Override
+            public void invoke(long window, int key, int scancode, int action, int mods) {
+                screen.keys[key] = action != GLFW_RELEASE;
+            }
+
+        });
 
         glOrtho(0, WIDTH, HEIGHT, 0, 1, -1);
 
@@ -60,6 +69,7 @@ public class Window {
                 while(true){
                     long startTime = System.nanoTime();
 
+                    screen.tick();
                     for(int i=0;i<screen.drawableElements.size();i++) {
                         screen.drawableElements.get(i).tick();
                     }
