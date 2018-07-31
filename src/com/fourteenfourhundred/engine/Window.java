@@ -46,7 +46,6 @@ public class Window {
         glClearColor(1, 1, 1, 0);
         glMatrixMode(GL_MODELVIEW);
         glfwShowWindow(window);
-
         startThreads();
         startGameLoop();
 
@@ -54,7 +53,31 @@ public class Window {
 
     }
 
+
     public void startThreads(){
+        Thread ticker = new Thread(){
+            public void run(){
+                while(true){
+                    long startTime = System.nanoTime();
+
+                    for(int i=0;i<screen.drawableElements.size();i++) {
+                        screen.drawableElements.get(i).tick();
+                    }
+
+                    long endTime = System.nanoTime();
+                    long timeout = 40 - ((endTime-startTime)/1000000);
+
+
+                    try {
+
+                        Thread.sleep((timeout<0) ? 0 : timeout);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        ticker.start();
 
     }
 

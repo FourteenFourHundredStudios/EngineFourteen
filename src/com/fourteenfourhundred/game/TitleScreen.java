@@ -8,7 +8,7 @@ public class TitleScreen extends Screen {
 
 
     public TitleScreen(){
-        drawableElements.add(new Drawable());
+
     }
 
 
