@@ -23,10 +23,12 @@ public class Screen {
     }
 
     public void tick(){
-
+        keys();
     }
 
+    public void keys(){
 
+    }
 
 }
 

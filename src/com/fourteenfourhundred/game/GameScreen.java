@@ -15,13 +15,17 @@ public class GameScreen extends Screen {
         drawableElements.add(player);
     }
 
+    public void keys(){
+        if(isKeyDown(68)){
+            player.setX(player.getX()+1);
+        }
+    }
+
     public void tick(){
         super.tick();
 
-        if(isKeyDown(68)){
-           player.setX(player.getX()+1);
-       }
-       
+
+
     }
 
 }
