@@ -70,16 +70,14 @@ public class Window {
                     long startTime = System.nanoTime();
 
                     screen.tick();
-                    for(int i=0;i<screen.drawableElements.size();i++) {
-                        screen.drawableElements.get(i).tick();
-                    }
+
 
                     long endTime = System.nanoTime();
-                    long timeout = 40 - ((endTime-startTime)/1000000);
+                    long timeout = 10 - ((endTime-startTime)/1000000);
 
 
                     try {
-
+                       //
                         Thread.sleep((timeout<0) ? 0 : timeout);
                     } catch (InterruptedException e) {
                         e.printStackTrace();

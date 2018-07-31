@@ -1,19 +1,19 @@
 package com.fourteenfourhundred.game;
 
 import com.fourteenfourhundred.engine.Camera;
-import com.fourteenfourhundred.engine.drawable.Drawable;
 import com.fourteenfourhundred.engine.Screen;
 import com.fourteenfourhundred.engine.drawable.Map;
+import com.fourteenfourhundred.engine.drawable.entities.Actor;
 import com.fourteenfourhundred.engine.drawable.entities.tiles.Tile;
 
 
 public class GameScreen extends Screen {
 
-    Drawable player;
+    Player player;
     Map map = new Map(0,0,1280,720,new Camera());
 
     public GameScreen(){
-        player = new Drawable(10,10,50,50);
+        player = new Player(10,10);
         drawableElements.add(player);
 
 
@@ -25,7 +25,7 @@ public class GameScreen extends Screen {
 
     public void keys(){
         if(isKeyDown(68)){
-            player.setX(player.getX()+1);
+            player.setX(player.getX()+3);
         }
     }
 

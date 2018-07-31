@@ -28,6 +28,9 @@ public class Screen {
     }
 
     public void tick(){
+        for(int i = 0; i<drawableElements.size();i++){
+            drawableElements.get(i).tick();
+        }
         keys();
     }
 

@@ -4,7 +4,9 @@ import com.fourteenfourhundred.engine.drawable.Drawable;
 
 public class Entity extends Drawable {
 
-    private boolean collidable = true;
+    protected boolean collidable = true;
+    protected boolean hasGravity = false;
+    public int gravitySpeed = 5;
 
     public Entity(int x, int y, int width, int height, boolean collidable) {
         super(x, y, width, height);
@@ -22,4 +24,19 @@ public class Entity extends Drawable {
     public void setCollidable(boolean collidable) {
         this.collidable = collidable;
     }
+
+    public boolean hasGravity() {
+        return hasGravity;
+    }
+
+    public void setHasGravity(boolean hasGravity) {
+        this.hasGravity = hasGravity;
+    }
+
+    public void tick(){
+        if(hasGravity){
+            y += gravitySpeed;
+        }
+    }
+
 }
