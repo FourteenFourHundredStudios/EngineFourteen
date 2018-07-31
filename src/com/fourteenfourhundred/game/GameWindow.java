@@ -5,7 +5,6 @@ import com.fourteenfourhundred.engine.Window;
 public class GameWindow extends Window{
 
 
-
     public GameWindow() {
         super(new GameScreen(), "EngineFourteen Demo", 1280, 720);
 

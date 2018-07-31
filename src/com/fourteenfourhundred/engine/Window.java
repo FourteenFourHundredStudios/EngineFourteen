@@ -105,6 +105,7 @@ public class Window {
 
         glfwDestroyWindow(window);
         glfwTerminate();
+        System.exit(0);
     }
 
     public void setScreen(Screen newScreen){

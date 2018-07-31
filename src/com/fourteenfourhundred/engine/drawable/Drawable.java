@@ -1,5 +1,6 @@
-package com.fourteenfourhundred.engine;
+package com.fourteenfourhundred.engine.drawable;
 
+import com.fourteenfourhundred.engine.Camera;
 import com.fourteenfourhundred.engine.util.Color;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -7,10 +8,11 @@ import static org.lwjgl.opengl.GL11.glPopMatrix;
 
 public class Drawable {
 
-    private int x;
-    private int y;
-    private int width;
-    private int height;
+    protected int x;
+    protected int y;
+    protected int width;
+    protected int height;
+    protected boolean visible = true;
 
     public Drawable(int x, int y, int width, int height){
         this.x = x;
@@ -20,9 +22,12 @@ public class Drawable {
     }
 
 
+    public void paint(int xOff, int yOff){
+        drawRect(x+xOff,y+yOff,width,height,0,Color.RED);
+    }
 
-    public void paint(){
-        drawRect(x,y,width,height,0,Color.RED);
+    public void paint(Camera cam){
+        paint(cam.x,cam.y);
     }
 
     public void tick(){
@@ -90,5 +95,14 @@ public class Drawable {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 }
