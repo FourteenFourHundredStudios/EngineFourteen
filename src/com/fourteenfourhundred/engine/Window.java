@@ -3,6 +3,7 @@ package com.fourteenfourhundred.engine;
 
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWKeyCallback;
+import org.lwjgl.glfw.GLFWMouseButtonCallbackI;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.system.MemoryUtil;
 
@@ -19,9 +20,16 @@ public class Window {
     public int HEIGHT;
     public String title;
     public Screen screen;
+    public double mouseX = 0;
+    public double mouseY = 0;
+
 
     public static boolean slowMo = false;
     public static int tickSpeed = 10;
+
+    public static final int RIGHT_CLICK = GLFW.GLFW_MOUSE_BUTTON_2;
+    public static final int LEFT_CLICK = GLFW.GLFW_MOUSE_BUTTON_1;
+
 
     public Window(Screen screen,String title, int width, int height) {
 
@@ -54,18 +62,31 @@ public class Window {
 
         });
 
+        glfwSetMouseButtonCallback(window, (long window, int button, int action, int mods) -> {
+            if(action == GLFW_PRESS) {
+                screen.onMousePressed(mouseX, mouseY, button);
+            }else if(action == GLFW_RELEASE){
+                screen.onMouseReleased(mouseX, mouseY, button);
+            }
+        });
+
+        glfwSetCursorPosCallback(window, (long window, double x, double y) -> {
+            mouseX = x;
+            mouseY = y;
+            screen.onMouseMoved(x,y);
+        });
+
         glOrtho(0, WIDTH, HEIGHT, 0, 1, -1);
 
         glClearColor(1, 1, 1, 0);
         glMatrixMode(GL_MODELVIEW);
         glfwShowWindow(window);
 
-        org.lwjgl.glfw.GLFW.glfwInit();
+        //These are for eventual controller support.
+        //org.lwjgl.glfw.GLFW.glfwInit();
+       // System.out.println(glfwGetJoystickName(GLFW_JOYSTICK_1));
 
-        System.out.println(glfwGetJoystickName(GLFW_JOYSTICK_1));
 
-
-       // glfwcallb
 
         startThreads();
         startGameLoop();

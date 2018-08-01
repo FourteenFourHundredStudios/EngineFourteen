@@ -5,10 +5,8 @@ import com.fourteenfourhundred.engine.drawable.Drawable;
 import com.fourteenfourhundred.engine.drawable.Map;
 import com.fourteenfourhundred.engine.drawable.entities.tiles.Tile;
 import com.fourteenfourhundred.engine.util.Collision;
-import com.fourteenfourhundred.engine.util.Color;
 import com.fourteenfourhundred.engine.util.Rectangle;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-
+import com.google.gson.*;
 
 import java.util.ArrayList;
 
@@ -66,30 +64,48 @@ public class Entity extends Drawable {
 
 
 
+
     public Collision isTouching(float dx, float dy){
         if(!isCollidable())return new Collision();
         collideBounds = new Rectangle(x+dx,y+dy,width,height);
         for(Map map: maps){
             for(Tile tile : map.getTiles()){
                 if(collideBounds.intersects(tile.getBounds()) && tile.isCollidable()) {
-                    int vDist = y-tile.getY();
-                    int hDist = x-tile.getX();
-                    int hitbox = -1;
-
-                    if (y >tile.getY()) {
-                        hitbox = Collision.ABOVE;
-                    } else if(y<tile.getY()) {
-                        hitbox = Collision.BELOW;
-                    }else if (x < tile.getX()) {
-                        hitbox = Collision.RIGHT;
-                    } else if (x > tile.getX()) {
-                        hitbox = Collision.LEFT;
-                    }
-                    return new Collision(tile, hitbox,vDist,hDist);
+                    //once you found the colliding tile pass it into this function to get directions
+                    return applyDirection(tile);
                 }
             }
         }
         return new Collision();
+    }
+
+    public String getJSONString(){
+        JsonObject data = new JsonObject();
+        data.addProperty("x",x);
+        data.addProperty("y",y);
+        data.addProperty("width",width);
+        data.addProperty("height",height);
+        data.addProperty("class",getClass().getName());
+        return data.toString();
+    }
+
+    //once the colliding tile is found you need this to find the direction info
+    private Collision applyDirection(Tile tile){
+        int vDist = y-tile.getY();
+        int hDist = x-tile.getX();
+        int hitbox = -1;
+
+        if (y >tile.getY()) {
+            hitbox = Collision.ABOVE;
+        } else if(y<tile.getY()) {
+            hitbox = Collision.BELOW;
+        }else if (x < tile.getX()) {
+            hitbox = Collision.RIGHT;
+        } else if (x > tile.getX()) {
+            hitbox = Collision.LEFT;
+        }
+        return new Collision(tile, hitbox,vDist,hDist);
+
     }
 
     public void moveBy(float dx, float dy){

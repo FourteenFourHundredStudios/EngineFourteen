@@ -42,6 +42,8 @@ public class MyGameScreen extends Screen {
 
     }
 
+
+
     public void keys(){
         if(isKeyDown(68)){
             player.moveBy(4,0);
