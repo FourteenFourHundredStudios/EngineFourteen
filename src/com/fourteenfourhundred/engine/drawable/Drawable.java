@@ -2,6 +2,7 @@ package com.fourteenfourhundred.engine.drawable;
 
 import com.fourteenfourhundred.engine.Camera;
 import com.fourteenfourhundred.engine.util.Color;
+import com.fourteenfourhundred.engine.util.Rectangle;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
@@ -32,6 +33,10 @@ public class Drawable {
 
     public void tick(){
 
+    }
+
+    public void drawRect(Rectangle rect, Color color){
+        drawRect(rect.x, rect.y, rect.width, rect.height,0,color);
     }
 
 

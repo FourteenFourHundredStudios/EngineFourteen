@@ -19,7 +19,7 @@ public class Window {
     public String title;
     public Screen screen;
 
-    public static boolean slowMo = true;
+    public static boolean slowMo = false;
     public static int tickSpeed = 10;
 
     public Window(Screen screen,String title, int width, int height) {

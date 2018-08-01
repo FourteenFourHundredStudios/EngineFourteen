@@ -23,17 +23,33 @@ public class MyGameScreen extends Screen {
 
 
 
-        for(int i=0; i<10;i++){
+        for(int i=0; i<20;i++){
             map.addTile(new Tile(Tile.size+(i*30),500));
         }
+
+
+        map.addTile(new Tile(30+120, 470));
+        map.addTile(new Tile(30, 440));
+        map.addTile(new Tile(30, 410));
+        map.addTile(new Tile(30, 380));
+        map.addTile(new Tile(30, 350));
+
+        for(int i=1; i<10;i++){
+            map.addTile(new Tile(Tile.size+(i*30),350));
+        }
+
 
     }
 
     public void keys(){
         if(isKeyDown(68)){
-            player.moveBy(3,0);
-        }else if(isKeyDown(65)){
-            player.moveBy(-3,0);
+            player.moveBy(4,0);
+        } if(isKeyDown(65)){
+            player.moveBy(-4,0);
+        } if(isKeyDown(32)){
+            if(player.isTouching(0,player.yVelocity)!=null) {
+                player.launch(0, -10);
+            }
         }
 
     }
