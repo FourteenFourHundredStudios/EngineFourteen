@@ -47,12 +47,18 @@ public class MyGameScreen extends Screen {
         } if(isKeyDown(65)){
             player.moveBy(-4,0);
         } if(isKeyDown(32)){
-            if(player.isTouching(0,player.yVelocity)!=null) {
+
+;
+            if(player.isTouching(0,player.yVelocity).happened && player.isResting()) {
+
                 player.launch(0, -10);
+
             }
         }
 
     }
+
+
 
 
     public void tick(){

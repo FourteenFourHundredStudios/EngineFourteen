@@ -7,6 +7,7 @@ import com.fourteenfourhundred.engine.util.Color;
 
 public class Player extends Actor {
 
+    public boolean boundBoxes = true;
 
 
 
@@ -20,10 +21,20 @@ public class Player extends Actor {
     public void paint(int xOffset, int yOffset){
 
 
-        //System.out.println("fwefewf");
-
-        drawRect(collideBounds,Color.CYAN);
         super.paint(xOffset,yOffset);
+
+        if(boundBoxes) {
+             drawRect(horizontalCollideBounds,Color.CYAN);
+             drawRect(verticalCollideBounds,Color.CYAN);
+        }
+
+    }
+
+    public void tick(){
+        super.tick();
+
+
+
     }
 
 
