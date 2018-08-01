@@ -2,6 +2,8 @@ package com.fourteenfourhundred.engine.drawable;
 
 
 import com.fourteenfourhundred.engine.Camera;
+import com.fourteenfourhundred.engine.drawable.entities.Actor;
+import com.fourteenfourhundred.engine.drawable.entities.Entity;
 import com.fourteenfourhundred.engine.drawable.entities.tiles.Tile;
 
 
@@ -10,11 +12,11 @@ import java.util.ArrayList;
 public class Map extends Drawable {
 
     //user can use this
-    private ArrayList<Tile> tiles = new ArrayList<>();
+    protected ArrayList<Tile> tiles = new ArrayList<>();
 
     //this is internal, and is used for collision algorithm
-    private ArrayList<ArrayList<Tile>> tileBuckets = new ArrayList<>();
-    private Camera camera;
+    protected ArrayList<ArrayList<Tile>> tileBuckets = new ArrayList<>();
+    protected Camera camera;
 
 
     public Map(int x, int y, int width, int height, Camera camera) {
@@ -23,8 +25,8 @@ public class Map extends Drawable {
 
     }
 
-    public void paint(){
-       // super.paint();
+    @Override
+    public void paint(int xOff, int yOff) {
         for(int i=0; i< tiles.size();i++){
             tiles.get(i).paint(camera);
         }
@@ -36,6 +38,11 @@ public class Map extends Drawable {
 
         return true;
     }
+
+    public ArrayList<Tile> getTiles(){
+        return tiles;
+    }
+
 
     public void invalidateTileBuckets(){
 

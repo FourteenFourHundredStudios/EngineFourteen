@@ -6,7 +6,7 @@ public class GameWindow extends Window{
 
 
     public GameWindow() {
-        super(new GameScreen(), "EngineFourteen Demo", 1280, 720);
+        super(new MyGameScreen(), "EngineFourteen Demo", 1280, 720);
 
     }
 

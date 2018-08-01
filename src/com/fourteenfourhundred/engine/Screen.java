@@ -3,6 +3,7 @@ package com.fourteenfourhundred.engine;
 
 
 import com.fourteenfourhundred.engine.drawable.Drawable;
+import com.fourteenfourhundred.engine.drawable.entities.Entity;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,15 @@ public class Screen {
             drawableElements.get(i).tick();
         }
         keys();
+    }
+
+    public void addToScreen(Drawable element){
+        drawableElements.add(element);
+    }
+
+    public Entity addToScreen(Entity element){
+        drawableElements.add(element);
+        return element;
     }
 
     public void keys(){
