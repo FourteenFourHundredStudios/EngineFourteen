@@ -7,7 +7,7 @@ import com.fourteenfourhundred.engine.util.Color;
 
 public class Player extends Actor {
 
-    public boolean boundBoxes = true;
+    public boolean boundBoxes = false;
 
 
 
