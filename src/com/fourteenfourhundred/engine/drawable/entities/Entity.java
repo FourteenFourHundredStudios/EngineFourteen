@@ -13,6 +13,7 @@ public class Entity extends Drawable {
     protected boolean collidable = true;
     protected boolean hasGravity = false;
     public double gravitySpeed = 0.3;
+    public float terminalVelocity = 60;
     public float yVelocity = 0;
     public int xVelocity = 0;
     public ArrayList<Map> maps = new ArrayList<>();
@@ -58,15 +59,24 @@ public class Entity extends Drawable {
     }
 
     public boolean isTouching(float dx, float dy){
-        Rectangle collideBounds = new Rectangle(x+dx,y+dy,width,height);
+        if(!isCollidable())return false;
+        Rectangle collideBounds = new Rectangle(x,y,width+dx,height+dy);
         for(Map map: maps){
             for(Tile tile : map.getTiles()){
-                if(collideBounds.intersects(tile.getBounds())){
+                if(collideBounds.intersects(tile.getBounds()) && tile.isCollidable()){
+                    y = tile.getY()-tile.size;
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    public void moveBy(int dx, int dy){
+        if(!isTouching(dx,dy)){
+            x += dx;
+            y += dy;
+        }
     }
 
     public void tick(){
@@ -81,7 +91,7 @@ public class Entity extends Drawable {
             }
 
             yVelocity += gravitySpeed ;
-
+            if( yVelocity > terminalVelocity)yVelocity=terminalVelocity;
         }
     }
 

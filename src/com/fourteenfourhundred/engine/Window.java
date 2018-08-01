@@ -19,6 +19,9 @@ public class Window {
     public String title;
     public Screen screen;
 
+    public static boolean slowMo = true;
+    public static int tickSpeed = 10;
+
     public Window(Screen screen,String title, int width, int height) {
 
 
@@ -64,6 +67,9 @@ public class Window {
 
 
     public void startThreads(){
+        //it was 10
+
+        if(slowMo) tickSpeed = 100;
         Thread ticker = new Thread(){
             public void run(){
                 while(true){
@@ -73,7 +79,7 @@ public class Window {
 
 
                     long endTime = System.nanoTime();
-                    long timeout = 10 - ((endTime-startTime)/1000000);
+                    long timeout = tickSpeed - ((endTime-startTime)/1000000);
 
 
                     try {
