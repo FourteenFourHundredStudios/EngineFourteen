@@ -20,13 +20,15 @@ public class Player extends Actor {
 
     public void paint(int xOffset, int yOffset){
 
-
         super.paint(xOffset,yOffset);
 
+
         if(boundBoxes) {
-             drawRect(horizontalCollideBounds,Color.CYAN);
-             drawRect(verticalCollideBounds,Color.CYAN);
+             drawRect(collideBounds,Color.CYAN);
+
         }
+
+
 
     }
 

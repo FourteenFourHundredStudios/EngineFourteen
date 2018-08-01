@@ -1,6 +1,7 @@
 package com.fourteenfourhundred.engine;
 
 
+import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.system.MemoryUtil;
@@ -58,6 +59,14 @@ public class Window {
         glClearColor(1, 1, 1, 0);
         glMatrixMode(GL_MODELVIEW);
         glfwShowWindow(window);
+
+        org.lwjgl.glfw.GLFW.glfwInit();
+
+        System.out.println(glfwGetJoystickName(GLFW_JOYSTICK_1));
+
+
+       // glfwcallb
+
         startThreads();
         startGameLoop();
 
@@ -101,6 +110,8 @@ public class Window {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
             this.screen.paint();
+
+         //   System.out.print(glfwGetJoystickButtons(GLFW_JOYSTICK_1).array());
 
 
             glfwSwapBuffers(window);
