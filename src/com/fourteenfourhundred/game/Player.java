@@ -22,7 +22,7 @@ public class Player extends Actor {
 
         //System.out.println("fwefewf");
 
-      //  drawRect(collideBounds,Color.CYAN);
+        drawRect(collideBounds,Color.CYAN);
         super.paint(xOffset,yOffset);
     }
 

@@ -14,7 +14,7 @@ public class Entity extends Drawable {
 
     protected boolean collidable = true;
     protected boolean hasGravity = false;
-    public double gravitySpeed = 0.3;
+    public double gravitySpeed = .3;
     public float terminalVelocity = 20;
     public float yVelocity = 0;
     public float xVelocity = 0;
@@ -66,7 +66,7 @@ public class Entity extends Drawable {
 
     public Entity isTouching(float dx, float dy){
         if(!isCollidable())return null;
-        Rectangle collideBounds = new Rectangle(x+dx,y,width,height+dy);
+         collideBounds = new Rectangle(x+dx,y+dy,width,height);
         for(Map map: maps){
             for(Tile tile : map.getTiles()){
                 if(collideBounds.intersects(tile.getBounds()) && tile.isCollidable()){
@@ -85,17 +85,29 @@ public class Entity extends Drawable {
             x += dx;
             y += dy;
         }else{
+
+            System.out.println(Math.random());
+
             //x adjustment for speed
             if(dx > 0 ){
                 x = touching.getX() - touching.getWidth();
             }else if (dx < 0){
                 x = touching.getX() + touching.getWidth();
             }
+
+            if(y<touching.getY()){
+                yVelocity = 0;
+                y = touching.getY() - touching.getHeight();
+            }else{
+                yVelocity = 0;
+            }
+
+
+
             //y adjustment for speed
 
-            if(touching.getY()<y){
-                //y=touching.getY()-touching.height;
-            }
+
+
 
 
         }
@@ -112,21 +124,22 @@ public class Entity extends Drawable {
 
         //TODO Do not assume Tile's gender
         if(hasGravity){
-
-
             //is working
+            /*
             Entity touching = isTouching(0,yVelocity);
 
             if(touching!=null){
                 yVelocity = 0;
 
+
                 y = touching.getY() - touching.getHeight();
             }
+            */
 
-            yVelocity += gravitySpeed ;
-            if( yVelocity > terminalVelocity)yVelocity=terminalVelocity;
-
+            yVelocity += gravitySpeed;
         }
+        if( yVelocity > terminalVelocity)yVelocity=terminalVelocity;
+
     }
 
 }
