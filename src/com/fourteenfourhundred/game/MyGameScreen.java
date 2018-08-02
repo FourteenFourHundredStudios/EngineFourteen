@@ -24,18 +24,18 @@ public class MyGameScreen extends Screen {
 
 
         for(int i=0; i<20;i++){
-            map.addTile(new Tile(Tile.size+(i*30),500));
+            map.addEntity(new Tile(Tile.size+(i*30),500));
         }
 
 
-        map.addTile(new Tile(30+120, 470));
-        map.addTile(new Tile(30, 440));
-        map.addTile(new Tile(30, 410));
-        map.addTile(new Tile(30, 380));
-        map.addTile(new Tile(30, 350));
+        map.addEntity(new Tile(30+120, 470));
+        map.addEntity(new Tile(30, 440));
+        map.addEntity(new Tile(30, 410));
+        map.addEntity(new Tile(30, 380));
+        map.addEntity(new Tile(30, 350));
 
         for(int i=1; i<10;i++){
-            map.addTile(new Tile(Tile.size+(i*30),350));
+            map.addEntity(new Tile(Tile.size+(i*30),350));
         }
 
 
