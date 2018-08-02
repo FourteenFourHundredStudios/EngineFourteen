@@ -1,6 +1,6 @@
 package com.fourteenfourhundred.game;
 
-import com.fourteenfourhundred.engine.Window;
+import com.fourteenfourhundred.engine.display.Window;
 
 public class GameWindow extends Window{
 

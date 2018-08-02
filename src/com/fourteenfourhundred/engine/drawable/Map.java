@@ -2,6 +2,7 @@ package com.fourteenfourhundred.engine.drawable;
 
 
 import com.fourteenfourhundred.engine.display.Camera;
+import com.fourteenfourhundred.engine.drawable.entities.Entity;
 import com.fourteenfourhundred.engine.drawable.entities.tiles.Tile;
 import com.fourteenfourhundred.engine.util.Misc;
 import com.google.gson.Gson;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class Map extends Drawable {
 
     //user can use this
-    protected ArrayList<Tile> tiles = new ArrayList<>();
+    protected ArrayList<Entity> entities = new ArrayList<>();
 
     //this is internal, and is used for collision algorithm
     protected ArrayList<ArrayList<Tile>> tileBuckets = new ArrayList<>();
@@ -28,26 +29,26 @@ public class Map extends Drawable {
 
     @Override
     public void paint(int xOff, int yOff) {
-        for(int i=0; i< tiles.size();i++){
-            tiles.get(i).paint(camera);
+        for(int i=0; i< entities.size();i++){
+            entities.get(i).paint(camera);
         }
     }
 
 
-    public boolean addTile(Tile tile){
-        tiles.add(tile);
+    public boolean addEntity(Entity entity){
+        entities.add(entity);
 
         return true;
     }
 
-    public ArrayList<Tile> getTiles(){
-        return tiles;
+    public ArrayList<Entity> getTiles(){
+        return entities;
     }
 
     public JsonArray getTileSavable(){
         JsonArray tilesJson = new JsonArray();
-        for(Tile tile:tiles){
-            tilesJson.add(tile.getJSONString());
+        for(Entity entity:entities){
+            tilesJson.add(entity.getJSONString());
         }
         return tilesJson;
     }
@@ -58,25 +59,7 @@ public class Map extends Drawable {
 
 
     public void load(String name){
-        try {
-            JsonArray tiles = new Gson().fromJson(Misc.readFile(name+".eft"), JsonArray.class);
-            for(int i=0; i<tiles.size();i++){
-                String className = tiles.get(i).getAsJsonObject().get("class").getAsString();
-                int x = tiles.get(i).getAsJsonObject().get("x").getAsInt();
-                int y = tiles.get(i).getAsJsonObject().get("y").getAsInt();
-                int width = tiles.get(i).getAsJsonObject().get("width").getAsInt();
-                int height = tiles.get(i).getAsJsonObject().get("height").getAsInt();
 
-                Tile tile = (Tile) Class.forName(className).getConstructor(int.class,int.class).newInstance(x,y);
-                addTile(tile);
-
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
     }
 
 

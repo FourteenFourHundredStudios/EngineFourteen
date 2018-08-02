@@ -69,10 +69,10 @@ public class Entity extends Drawable {
         if(!isCollidable())return new Collision();
         collideBounds = new Rectangle(x+dx,y+dy,width,height);
         for(Map map: maps){
-            for(Tile tile : map.getTiles()){
-                if(collideBounds.intersects(tile.getBounds()) && tile.isCollidable()) {
+            for(Entity entity : map.getTiles()){
+                if(collideBounds.intersects(entity.getBounds()) && entity.isCollidable()) {
                     //once you found the colliding tile pass it into this function to get directions
-                    return applyDirection(tile);
+                    return applyDirection(entity);
                 }
             }
         }
@@ -90,21 +90,21 @@ public class Entity extends Drawable {
     }
 
     //once the colliding tile is found you need this to find the direction info
-    private Collision applyDirection(Tile tile){
-        int vDist = y-tile.getY();
-        int hDist = x-tile.getX();
+    private Collision applyDirection(Entity entity){
+        int vDist = y-entity.getY();
+        int hDist = x-entity.getX();
         int hitbox = -1;
 
-        if (y >tile.getY()) {
+        if (y >entity.getY()) {
             hitbox = Collision.ABOVE;
-        } else if(y<tile.getY()) {
+        } else if(y<entity.getY()) {
             hitbox = Collision.BELOW;
-        }else if (x < tile.getX()) {
+        }else if (x < entity.getX()) {
             hitbox = Collision.RIGHT;
-        } else if (x > tile.getX()) {
+        } else if (x > entity.getX()) {
             hitbox = Collision.LEFT;
         }
-        return new Collision(tile, hitbox,vDist,hDist);
+        return new Collision(entity, hitbox,vDist,hDist);
 
     }
 

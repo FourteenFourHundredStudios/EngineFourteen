@@ -4,12 +4,13 @@ import com.fourteenfourhundred.engine.display.Camera;
 import com.fourteenfourhundred.engine.display.Screen;
 import com.fourteenfourhundred.engine.display.Window;
 import com.fourteenfourhundred.engine.drawable.Map;
+import com.fourteenfourhundred.engine.drawable.entities.Entity;
 import com.fourteenfourhundred.engine.drawable.entities.tiles.Tile;
 
 import java.io.*;
 import java.nio.charset.Charset;
 
-public class MapScreen extends Screen { //test
+public class MapScreen extends Screen {
     private boolean save = false;
     private boolean load = false;
 
@@ -25,7 +26,7 @@ public class MapScreen extends Screen { //test
 
     public void onMousePressed(double x, double y, int button){
         if(button == Window.LEFT_CLICK) {
-            addTile(new Tile((int)x,(int)y),align);
+            addEntity(new Tile((int)x,(int)y),align);
         }else if(button == Window.RIGHT_CLICK) {
 
 
@@ -65,17 +66,18 @@ public class MapScreen extends Screen { //test
     }
 
 
+
     public void onMouseMoved(double x, double y){
         crosshair.setPos(align,x,y);
     }
 
-    public void addTile(Tile tile, boolean align){
+    public void addEntity(Entity entity, boolean align){
         if(align){
-            tile.setX(Tile.size*(Math.round(tile.getX()/Tile.size)));
-            tile.setY(Tile.size*(Math.round(tile.getY()/Tile.size)));
+            entity.setX(Tile.size*(Math.round(entity.getX()/Tile.size)));
+            entity.setY(Tile.size*(Math.round(entity.getY()/Tile.size)));
         }
 
-        map.addTile(tile);
+        map.addEntity(entity);
 
     }
 
