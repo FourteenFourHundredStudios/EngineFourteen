@@ -1,7 +1,6 @@
 package com.fourteenfourhundred.engine.mapmaker;
 
-import com.fourteenfourhundred.engine.Screen;
-import com.fourteenfourhundred.engine.Window;
+import com.fourteenfourhundred.engine.display.Window;
 
 public class MapWindow extends Window {
 

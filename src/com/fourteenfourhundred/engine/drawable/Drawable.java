@@ -1,6 +1,6 @@
 package com.fourteenfourhundred.engine.drawable;
 
-import com.fourteenfourhundred.engine.Camera;
+import com.fourteenfourhundred.engine.display.Camera;
 import com.fourteenfourhundred.engine.util.Color;
 import com.fourteenfourhundred.engine.util.Rectangle;
 

@@ -1,4 +1,4 @@
-package com.fourteenfourhundred.engine;
+package com.fourteenfourhundred.engine.display;
 
 import com.fourteenfourhundred.engine.drawable.Drawable;
 import com.fourteenfourhundred.engine.drawable.entities.Entity;

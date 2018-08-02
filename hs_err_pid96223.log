@@ -100,9 +100,9 @@ j  com.fourteenfourhundred.engine.drawable.Drawable.drawRect(Lcom/fourteenfourhu
 j  com.fourteenfourhundred.engine.drawable.entities.Entity.isTouching(FF)Lcom/fourteenfourhundred/engine/drawable/entities/Entity;+129
 j  com.fourteenfourhundred.engine.drawable.entities.Entity.tick()V+41
 j  com.fourteenfourhundred.engine.drawable.entities.Actor.tick()V+1
-j  com.fourteenfourhundred.engine.Screen.tick()V+24
+j  com.fourteenfourhundred.engine.display.Screen.tick()V+24
 j  com.fourteenfourhundred.game.MyGameScreen.tick()V+1
-j  com.fourteenfourhundred.engine.Window$2.run()V+11
+j  com.fourteenfourhundred.engine.display.Window$2.run()V+11
 v  ~StubRoutines::call_stub
 V  [libjvm.dylib+0x2ef9aa]
 V  [libjvm.dylib+0x2f014e]
@@ -123,9 +123,9 @@ j  com.fourteenfourhundred.engine.drawable.Drawable.drawRect(Lcom/fourteenfourhu
 j  com.fourteenfourhundred.engine.drawable.entities.Entity.isTouching(FF)Lcom/fourteenfourhundred/engine/drawable/entities/Entity;+129
 j  com.fourteenfourhundred.engine.drawable.entities.Entity.tick()V+41
 j  com.fourteenfourhundred.engine.drawable.entities.Actor.tick()V+1
-j  com.fourteenfourhundred.engine.Screen.tick()V+24
+j  com.fourteenfourhundred.engine.display.Screen.tick()V+24
 j  com.fourteenfourhundred.game.MyGameScreen.tick()V+1
-j  com.fourteenfourhundred.engine.Window$2.run()V+11
+j  com.fourteenfourhundred.engine.display.Window$2.run()V+11
 v  ~StubRoutines::call_stub
 
 ---------------  P R O C E S S  ---------------

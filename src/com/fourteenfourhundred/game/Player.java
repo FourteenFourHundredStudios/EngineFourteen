@@ -1,6 +1,5 @@
 package com.fourteenfourhundred.game;
 
-import com.fourteenfourhundred.engine.Camera;
 import com.fourteenfourhundred.engine.drawable.entities.Actor;
 import com.fourteenfourhundred.engine.drawable.entities.tiles.Tile;
 import com.fourteenfourhundred.engine.util.Color;

@@ -1,7 +1,7 @@
 package com.fourteenfourhundred.game;
 
-import com.fourteenfourhundred.engine.Camera;
-import com.fourteenfourhundred.engine.Screen;
+import com.fourteenfourhundred.engine.display.Camera;
+import com.fourteenfourhundred.engine.display.Screen;
 import com.fourteenfourhundred.engine.drawable.Map;
 import com.fourteenfourhundred.engine.drawable.entities.tiles.Tile;
 

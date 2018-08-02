@@ -1,9 +1,7 @@
 package com.fourteenfourhundred.engine.drawable;
 
 
-import com.fourteenfourhundred.engine.Camera;
-import com.fourteenfourhundred.engine.drawable.entities.Actor;
-import com.fourteenfourhundred.engine.drawable.entities.Entity;
+import com.fourteenfourhundred.engine.display.Camera;
 import com.fourteenfourhundred.engine.drawable.entities.tiles.Tile;
 import com.fourteenfourhundred.engine.util.Misc;
 import com.google.gson.Gson;

@@ -1,15 +1,10 @@
 package com.fourteenfourhundred.engine.mapmaker;
 
-import com.fourteenfourhundred.engine.Camera;
-import com.fourteenfourhundred.engine.Screen;
-import com.fourteenfourhundred.engine.Window;
+import com.fourteenfourhundred.engine.display.Camera;
+import com.fourteenfourhundred.engine.display.Screen;
+import com.fourteenfourhundred.engine.display.Window;
 import com.fourteenfourhundred.engine.drawable.Map;
-import com.fourteenfourhundred.engine.drawable.entities.Entity;
 import com.fourteenfourhundred.engine.drawable.entities.tiles.Tile;
-import com.fourteenfourhundred.engine.util.Misc;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 
 import java.io.*;
 import java.nio.charset.Charset;

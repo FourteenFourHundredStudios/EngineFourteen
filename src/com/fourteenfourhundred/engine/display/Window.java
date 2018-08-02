@@ -1,9 +1,9 @@
-package com.fourteenfourhundred.engine;
+package com.fourteenfourhundred.engine.display;
 
 
+import com.fourteenfourhundred.engine.display.Screen;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWKeyCallback;
-import org.lwjgl.glfw.GLFWMouseButtonCallbackI;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.system.MemoryUtil;
 

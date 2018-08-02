@@ -1,4 +1,4 @@
-package com.fourteenfourhundred.engine;
+package com.fourteenfourhundred.engine.display;
 
 public class Camera {
 
