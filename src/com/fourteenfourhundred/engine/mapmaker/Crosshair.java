@@ -20,9 +20,13 @@ public class Crosshair extends Drawable {
     public void setPos(boolean align, double x, double y) {
         testx=(float)x;
         testy=(float)y;
+
         if(align){
             this.x = (Tile.size*(Math.round((int)x/Tile.size)));
             this.y = (Tile.size*(Math.round((int)y/Tile.size)));
+        }else{
+            this.x=(int)x;
+            this.y=(int)y;
         }
 
         /*

@@ -28,7 +28,7 @@ public class MapScreen extends Screen {
         if(button == Window.LEFT_CLICK) {
             addEntity(new Tile((int)x,(int)y),align);
         }else if(button == Window.RIGHT_CLICK) {
-            removeEntity((int)x,(int)y);
+            removeEntity(x,y);
         }
     }
 
@@ -80,8 +80,9 @@ public class MapScreen extends Screen {
 
     }
 
-    public void removeEntity(int x, int y){
+    public void removeEntity(double x, double y){
         for(Entity entity: map.getEntities()){
+            System.out.println("x "+ entity.getX());
             if(entity.getBounds().intersectsPoint(x,y)){
                 System.out.println("test");
             }
