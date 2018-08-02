@@ -69,7 +69,7 @@ public class Entity extends Drawable {
         if(!isCollidable())return new Collision();
         collideBounds = new Rectangle(x+dx,y+dy,width,height);
         for(Map map: maps){
-            for(Entity entity : map.getTiles()){
+            for(Entity entity : map.getEntities()){
                 if(collideBounds.intersects(entity.getBounds()) && entity.isCollidable()) {
                     //once you found the colliding tile pass it into this function to get directions
                     return applyDirection(entity);

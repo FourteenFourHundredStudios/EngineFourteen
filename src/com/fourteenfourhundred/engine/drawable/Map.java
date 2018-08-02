@@ -36,12 +36,14 @@ public class Map extends Drawable {
 
 
     public boolean addEntity(Entity entity){
-        entities.add(entity);
-
-        return true;
+        return entities.add(entity);
     }
 
-    public ArrayList<Entity> getTiles(){
+    public boolean removeEntity(Entity entity){
+        return entities.remove(entity);
+    }
+
+    public ArrayList<Entity> getEntities(){
         return entities;
     }
 

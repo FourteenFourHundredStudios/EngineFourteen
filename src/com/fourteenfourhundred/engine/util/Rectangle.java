@@ -36,4 +36,11 @@ public class Rectangle {
                 (th < ty || th > ry));
     }
 
+    public boolean intersectsPoint(int x, int y) {
+        if(this.x<x && x<(this.x+this.width) && this.y<y && y<(this.y+this.height)){
+            return true;
+        }
+        return false;
+    }
+
 }

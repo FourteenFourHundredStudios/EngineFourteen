@@ -28,8 +28,7 @@ public class MapScreen extends Screen {
         if(button == Window.LEFT_CLICK) {
             addEntity(new Tile((int)x,(int)y),align);
         }else if(button == Window.RIGHT_CLICK) {
-
-
+            removeEntity((int)x,(int)y);
         }
     }
 
@@ -79,6 +78,14 @@ public class MapScreen extends Screen {
 
         map.addEntity(entity);
 
+    }
+
+    public void removeEntity(int x, int y){
+        for(Entity entity: map.getEntities()){
+            if(entity.getBounds().intersectsPoint(x,y)){
+                System.out.println("test");
+            }
+        }
     }
 
 }
