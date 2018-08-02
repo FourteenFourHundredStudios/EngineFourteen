@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class Entity extends Drawable {
 
+    
     protected boolean collidable = true;
     protected boolean hasGravity = false;
     public double gravitySpeed = .3;
