@@ -49,35 +49,6 @@ public class MapScreen extends Screen {
     }
 
 
-    public void load(){
-        try {
-
-
-
-            JsonArray tiles = new Gson().fromJson(Misc.readFile("map.eft"), JsonArray.class);
-            for(int i=0; i<tiles.size();i++){
-                String className = tiles.get(i).getAsJsonObject().get("class").getAsString();
-                int x = tiles.get(i).getAsJsonObject().get("x").getAsInt();
-                int y = tiles.get(i).getAsJsonObject().get("y").getAsInt();
-                int width = tiles.get(i).getAsJsonObject().get("width").getAsInt();
-                int height = tiles.get(i).getAsJsonObject().get("height").getAsInt();
-
-                Tile tile = (Tile) Class.forName(className).getConstructor(int.class,int.class).newInstance(x,y);
-                map.addTile(tile);
-
-                //System.out.println(Class.forName(className).getConstructor(int.class,int.class).getName());
-
-            }
-
-
-            //System.out.println(convertedObject.toString());
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
-    }
 
     public void keys(){
         if(isKeyDown(77)){
@@ -91,7 +62,7 @@ public class MapScreen extends Screen {
         if(isKeyDown(76)){
             if(!load) {
                 load = true;
-                load();
+                map.load("map");
             }
         }else{
             load = false;
