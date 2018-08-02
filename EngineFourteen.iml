@@ -10,29 +10,63 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../lwjgl/lwjgl/lwjgl.jar!/" />
-          <root url="jar://$MODULE_DIR$/../lwjgl/lwjgl/lwjgl-natives-linux.jar!/" />
-          <root url="jar://$MODULE_DIR$/../lwjgl/lwjgl-glfw/lwjgl-glfw.jar!/" />
-          <root url="jar://$MODULE_DIR$/../lwjgl/lwjgl-glfw/lwjgl-glfw-natives-linux.jar!/" />
-          <root url="jar://$MODULE_DIR$/../lwjgl/lwjgl-opengl/lwjgl-opengl-natives-linux.jar!/" />
-          <root url="jar://$MODULE_DIR$/../lwjgl/lwjgl-opengl/lwjgl-opengl.jar!/" />
+          <root url="jar://$MODULE_DIR$/../gson-2.6.2.jar!/" />
         </CLASSES>
-        <JAVADOC>
-          <root url="jar://$MODULE_DIR$/../lwjgl/lwjgl/lwjgl-javadoc.jar!/" />
-          <root url="jar://$MODULE_DIR$/../lwjgl/lwjgl-glfw/lwjgl-glfw-javadoc.jar!/" />
-          <root url="jar://$MODULE_DIR$/../lwjgl/lwjgl-opengl/lwjgl-opengl-javadoc.jar!/" />
-        </JAVADOC>
+        <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../gson-2.8.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../lwjgl-3/lwjgl-glfw/lwjgl-glfw-natives-macos.jar!/" />
         </CLASSES>
-        <JAVADOC>
-          <root url="jar://$MODULE_DIR$/../gson-2.8.2-javadoc.jar!/" />
-        </JAVADOC>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../lwjgl-3/lwjgl-glfw/lwjgl-glfw.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../lwjgl-3/lwjgl/lwjgl-natives-macos.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../lwjgl-3/lwjgl/lwjgl.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../lwjgl-3/lwjgl-opengl/lwjgl-opengl-natives-macos.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../lwjgl-3/lwjgl-opengl/lwjgl-opengl.jar!/" />
+        </CLASSES>
+        <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
