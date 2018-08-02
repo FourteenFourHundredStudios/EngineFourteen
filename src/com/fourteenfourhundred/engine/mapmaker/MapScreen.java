@@ -9,7 +9,7 @@ import com.fourteenfourhundred.engine.drawable.entities.tiles.Tile;
 import java.io.*;
 import java.nio.charset.Charset;
 
-public class MapScreen extends Screen {
+public class MapScreen extends Screen { //test
     private boolean save = false;
     private boolean load = false;
 
