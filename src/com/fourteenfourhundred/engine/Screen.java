@@ -1,7 +1,5 @@
 package com.fourteenfourhundred.engine;
 
-
-
 import com.fourteenfourhundred.engine.drawable.Drawable;
 import com.fourteenfourhundred.engine.drawable.entities.Entity;
 import org.lwjgl.glfw.GLFW;
@@ -23,8 +21,6 @@ public class Screen {
 
         for(int i = 0; i<drawableElements.size()&&drawableElements.get(i).isVisible();i++){
             drawableElements.get(i).paint(0,0);
-
-
         }
     }
 
