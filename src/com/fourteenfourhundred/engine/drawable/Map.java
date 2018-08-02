@@ -5,6 +5,7 @@ import com.fourteenfourhundred.engine.Camera;
 import com.fourteenfourhundred.engine.drawable.entities.Actor;
 import com.fourteenfourhundred.engine.drawable.entities.Entity;
 import com.fourteenfourhundred.engine.drawable.entities.tiles.Tile;
+import com.google.gson.JsonArray;
 
 
 import java.util.ArrayList;
@@ -43,6 +44,13 @@ public class Map extends Drawable {
         return tiles;
     }
 
+    public JsonArray getTileSavable(){
+        JsonArray tilesJson = new JsonArray();
+        for(Tile tile:tiles){
+            tilesJson.add(tile.getJSONString());
+        }
+        return tilesJson;
+    }
 
     public void invalidateTileBuckets(){
 

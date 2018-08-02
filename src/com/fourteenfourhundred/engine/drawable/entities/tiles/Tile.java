@@ -6,6 +6,7 @@ import com.fourteenfourhundred.engine.util.Color;
 
 public class Tile extends Entity {
 
+    
     public static int size = 30;
 
     public Tile(int x, int y) {

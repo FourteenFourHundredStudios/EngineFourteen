@@ -79,14 +79,14 @@ public class Entity extends Drawable {
         return new Collision();
     }
 
-    public String getJSONString(){
+    public JsonObject getJSONString(){
         JsonObject data = new JsonObject();
         data.addProperty("x",x);
         data.addProperty("y",y);
         data.addProperty("width",width);
         data.addProperty("height",height);
         data.addProperty("class",getClass().getName());
-        return data.toString();
+        return data;
     }
 
     //once the colliding tile is found you need this to find the direction info
