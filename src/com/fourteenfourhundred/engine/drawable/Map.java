@@ -59,6 +59,14 @@ public class Map extends Drawable {
 
     }
 
+    public void tick(){
+        super.tick();
+
+        /*
+        for(Entity e: entities){
+            e.tick();
+        }*/
+    }
 
     public void load(String name){
 

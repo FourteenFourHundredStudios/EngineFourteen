@@ -30,6 +30,7 @@ public class Window {
     public static final int RIGHT_CLICK = GLFW.GLFW_MOUSE_BUTTON_2;
     public static final int LEFT_CLICK = GLFW.GLFW_MOUSE_BUTTON_1;
 
+    private long variableYieldTime, lastTime;
 
     public Window(Screen screen,String title, int width, int height) {
 
@@ -95,6 +96,43 @@ public class Window {
 
     }
 
+    private void sync(int fps) {
+        if (fps <= 0) return;
+
+        long sleepTime = 1000000000 / fps; // nanoseconds to sleep this frame
+        // yieldTime + remainder micro & nano seconds if smaller than sleepTime
+        long yieldTime = Math.min(sleepTime, variableYieldTime + sleepTime % (1000 * 1000));
+        long overSleep = 0; // time the sync goes over by
+
+        try {
+            while (true) {
+                long t = System.nanoTime() - lastTime;
+
+                if (t < sleepTime - yieldTime) {
+                    Thread.sleep(1);
+                } else if (t < sleepTime) {
+                    // burn the last few CPU cycles to ensure accuracy
+                    Thread.yield();
+                } else {
+                    overSleep = t - sleepTime;
+                    break; // exit while loop
+                }
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            lastTime = System.nanoTime() - Math.min(overSleep, sleepTime);
+
+            // auto tune the time sync should yield
+            if (overSleep > variableYieldTime) {
+                // increase by 200 microseconds (1/5 a ms)
+                variableYieldTime = Math.min(variableYieldTime + 200 * 1000, sleepTime);
+            } else if (overSleep < variableYieldTime - 200 * 1000) {
+                // decrease by 2 microseconds
+                variableYieldTime = Math.max(variableYieldTime - 2 * 1000, 0);
+            }
+        }
+    }
 
     public void startThreads(){
         //it was 10
@@ -108,16 +146,17 @@ public class Window {
                     screen.tick();
 
 
-                    long endTime = System.nanoTime();
-                    long timeout = tickSpeed - ((endTime-startTime)/1000000);
+                 //   long endTime = System.nanoTime();
+                 //   long timeout = tickSpeed - ((endTime-startTime)/1000000);
 
-
+                    sync(60);
+                    /*
                     try {
                        //
                         Thread.sleep((timeout<0) ? 0 : timeout);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                    }
+                    }*/
                 }
             }
         };
