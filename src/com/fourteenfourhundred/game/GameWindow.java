@@ -12,6 +12,10 @@ public class GameWindow extends Window{
 
     public void startThreads(){
         super.startThreads();
+
+
+
+
     }
 
 

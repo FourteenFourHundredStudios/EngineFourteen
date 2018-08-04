@@ -6,12 +6,16 @@ public class Camera {
 
     public int x=0;
     public int y=0;
-    public Screen screen;
+    public int width = 0;
+    public int height = 0;
 
-    public Camera(Screen screen){
-        this.screen = screen;
-        x = screen.width;
-        //y = screen.height;
+
+    public Camera(int width,int height){
+        this.width = width;
+        this.height = height;
+        //System.out.println();
+        x = width/2;
+        y = height/2;
     }
 
 

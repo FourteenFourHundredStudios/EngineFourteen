@@ -15,7 +15,7 @@ public class MapScreen extends Screen {
     private boolean load = false;
 
     public boolean align = true;
-    public Map map = new Map(0,0,720,1080,new Camera(this));
+    public Map map = new Map(0,0,720,1080,new Camera(1280, 720));
     public Crosshair crosshair = new Crosshair();
 
 

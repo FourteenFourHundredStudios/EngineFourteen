@@ -62,7 +62,6 @@ public class Entity extends Drawable {
     }
 
     public Rectangle getBounds(){
-        //return bounds;
         return new Rectangle(x,y,width,height);
     }
 
@@ -115,14 +114,22 @@ public class Entity extends Drawable {
     public void moveBy(float dx, float dy){
         Collision touching = isTouching(dx,dy);
 
+        int oldY = 0;
+        int oldX = 0;
+
+        if(isAttachedToCamera()){
+            oldY = y;
+            oldX = x;
+        }
+
         if(!touching.happened){//call the police
             x += dx;
             y += dy;
-            if(isAttachedToCamera()){
-                camera.x -= dx;
-                camera.y -= dy;
-            }
+
         }else{
+
+
+
             if(Math.abs(touching.vDist)> Math.abs(touching.hDist)){
                 if(touching.hitbox==touching.BELOW){
                     yVelocity = 0;
@@ -142,7 +149,18 @@ public class Entity extends Drawable {
                     x = touching.entity.getX() + touching.entity.getWidth();
                 }
             }
+
+
+
         }
+
+        if(isAttachedToCamera()) {
+            int camChangeY = oldY - y ;
+            int camChangeX = oldX - x ;
+            camera.y += camChangeY;
+            camera.x += camChangeX;
+        }
+
     }
 
     public void launch(int dx, int dy){
@@ -157,9 +175,9 @@ public class Entity extends Drawable {
     public void attachCamera(Camera camera){
         this.camera = camera;
         camera.focus(this);
-       // this.camera.x
     }
 
+    //this is stupid
     public boolean isResting(){
         return yVelocity < 1;
     }
@@ -169,7 +187,7 @@ public class Entity extends Drawable {
 
 
         moveBy(xVelocity, yVelocity);
-        //System.out.println(yVelocity);
+
         if(hasGravity)yVelocity += gravitySpeed;
 
         if( yVelocity > terminalVelocity)yVelocity=terminalVelocity;

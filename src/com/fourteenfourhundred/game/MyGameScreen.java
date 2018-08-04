@@ -2,6 +2,7 @@ package com.fourteenfourhundred.game;
 
 import com.fourteenfourhundred.engine.display.Camera;
 import com.fourteenfourhundred.engine.display.Screen;
+import com.fourteenfourhundred.engine.display.Window;
 import com.fourteenfourhundred.engine.drawable.Map;
 import com.fourteenfourhundred.engine.drawable.entities.tiles.Tile;
 
@@ -11,7 +12,7 @@ public class MyGameScreen extends Screen {
     Player player;
     Player mob;
     Player john;
-    Camera cam= new Camera(this);
+    Camera cam = new Camera(1280, 720);
     Map map = new Map(0,0,720,1820,cam);
 
 
@@ -20,14 +21,13 @@ public class MyGameScreen extends Screen {
         player = new Player(30,10);
 
 
-       // addToScreen(map);
-       // addToScreen(player).attachToMap(map);
 
         addToScreen(map);
         player.attachToMap(map);
+        player.attachCamera(cam);
         map.addEntity(player);
 
-        player.attachCamera(cam);
+
 
 
         for(int i=0; i<20;i++){

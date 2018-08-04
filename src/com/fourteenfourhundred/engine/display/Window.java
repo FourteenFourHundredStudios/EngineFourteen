@@ -43,6 +43,8 @@ public class Window {
         screen.width = width;
         screen.height = height;
 
+       // System.out.println("fwfe");
+
         if (!glfwInit()) {
             System.out.println("GLFW initialization failed.");
             System.exit(1);
