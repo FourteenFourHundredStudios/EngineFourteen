@@ -11,11 +11,12 @@ public class MyGameScreen extends Screen {
     Player player;
     Player mob;
     Player john;
-    Camera cam = new Camera();
+    Camera cam= new Camera(this);
     Map map = new Map(0,0,720,1820,cam);
 
 
     public MyGameScreen(){
+
         player = new Player(30,10);
 
 
@@ -26,6 +27,7 @@ public class MyGameScreen extends Screen {
         player.attachToMap(map);
         map.addEntity(player);
 
+        player.attachCamera(cam);
 
 
         for(int i=0; i<20;i++){
@@ -52,7 +54,6 @@ public class MyGameScreen extends Screen {
     public void keys(){
         if(isKeyDown(68)){
             player.moveBy(4,0);
-            //cam.x -= 4;
         } if(isKeyDown(65)){
             player.moveBy(-4,0);
         } if(isKeyDown(32)){

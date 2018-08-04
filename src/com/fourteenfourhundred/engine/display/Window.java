@@ -40,6 +40,8 @@ public class Window {
         this.HEIGHT = height;
         this.title= title;
 
+        screen.width = width;
+        screen.height = height;
 
         if (!glfwInit()) {
             System.out.println("GLFW initialization failed.");

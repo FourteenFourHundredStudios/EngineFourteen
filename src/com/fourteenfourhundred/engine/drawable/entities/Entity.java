@@ -1,5 +1,6 @@
 package com.fourteenfourhundred.engine.drawable.entities;
 
+import com.fourteenfourhundred.engine.display.Camera;
 import com.fourteenfourhundred.engine.drawable.Drawable;
 import com.fourteenfourhundred.engine.drawable.Map;
 import com.fourteenfourhundred.engine.drawable.entities.tiles.Tile;
@@ -20,7 +21,9 @@ public class Entity extends Drawable {
     public float xVelocity = 0;
     public ArrayList<Map> maps = new ArrayList<>();
     public Rectangle bounds;
-    public Rectangle collideBounds ;
+    public Rectangle collideBounds;
+
+    public Camera camera;
 
 
     public Entity(int x, int y, int width, int height, boolean collidable) {
@@ -115,6 +118,10 @@ public class Entity extends Drawable {
         if(!touching.happened){//call the police
             x += dx;
             y += dy;
+            if(isAttachedToCamera()){
+                camera.x -= dx;
+                camera.y -= dy;
+            }
         }else{
             if(Math.abs(touching.vDist)> Math.abs(touching.hDist)){
                 if(touching.hitbox==touching.BELOW){
@@ -143,6 +150,15 @@ public class Entity extends Drawable {
         yVelocity+=dy;
     }
 
+    public boolean isAttachedToCamera(){
+        return camera != null;
+    }
+
+    public void attachCamera(Camera camera){
+        this.camera = camera;
+        camera.focus(this);
+       // this.camera.x
+    }
 
     public boolean isResting(){
         return yVelocity < 1;
@@ -153,6 +169,7 @@ public class Entity extends Drawable {
 
 
         moveBy(xVelocity, yVelocity);
+        //System.out.println(yVelocity);
         if(hasGravity)yVelocity += gravitySpeed;
 
         if( yVelocity > terminalVelocity)yVelocity=terminalVelocity;

@@ -32,7 +32,6 @@ public class Player extends Actor {
     public void tick(){
         super.tick();
 
-        //System.out.println(yVelocity);
 
     }
 

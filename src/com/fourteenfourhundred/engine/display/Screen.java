@@ -14,7 +14,8 @@ public class Screen {
     //another test
 
     public ArrayList<Drawable> drawableElements = new ArrayList<Drawable>();
-
+    public int width;
+    public int height;
 
     public boolean[] keys = new boolean[65536];
 
