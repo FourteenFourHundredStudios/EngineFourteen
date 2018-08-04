@@ -21,10 +21,8 @@ public class Player extends Actor {
 
         super.paint(xOffset,yOffset);
 
-
         if(boundBoxes) {
              drawRect(collideBounds,Color.CYAN);
-
         }
 
 
@@ -34,7 +32,7 @@ public class Player extends Actor {
     public void tick(){
         super.tick();
 
-
+        //System.out.println(yVelocity);
 
     }
 

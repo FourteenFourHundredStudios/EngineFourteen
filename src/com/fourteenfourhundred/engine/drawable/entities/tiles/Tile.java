@@ -10,6 +10,7 @@ public class Tile extends Entity {
 
     public Tile(int x, int y) {
         super(x, y, size, size);
+        //setHasGravity(false);
     }
 
     public void paint(int xOff,int yOff){

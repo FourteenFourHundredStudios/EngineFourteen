@@ -134,6 +134,7 @@ public class Window {
         }
     }
 
+
     public void startThreads(){
         //it was 10
 
@@ -141,22 +142,12 @@ public class Window {
         Thread ticker = new Thread(){
             public void run(){
                 while(true){
-                    long startTime = System.nanoTime();
 
                     screen.tick();
 
-
-                 //   long endTime = System.nanoTime();
-                 //   long timeout = tickSpeed - ((endTime-startTime)/1000000);
-
                     sync(60);
-                    /*
-                    try {
-                       //
-                        Thread.sleep((timeout<0) ? 0 : timeout);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }*/
+
+
                 }
             }
         };

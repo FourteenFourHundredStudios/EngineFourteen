@@ -61,11 +61,11 @@ public class Map extends Drawable {
 
     public void tick(){
         super.tick();
+        //System.out.println("fef");
 
-        /*
         for(Entity e: entities){
             e.tick();
-        }*/
+        }
     }
 
     public void load(String name){

@@ -19,12 +19,12 @@ public class MyGameScreen extends Screen {
         player = new Player(30,10);
 
 
+       // addToScreen(map);
+       // addToScreen(player).attachToMap(map);
+
         addToScreen(map);
-        addToScreen(player).attachToMap(map);
-
-
-      //  player.attachToMap(map);
-       // map.addEntity(player);
+        player.attachToMap(map);
+        map.addEntity(player);
 
 
 

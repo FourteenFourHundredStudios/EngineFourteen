@@ -14,7 +14,7 @@ public class Entity extends Drawable {
     
     protected boolean collidable = true;
     protected boolean hasGravity = false;
-    public double gravitySpeed = .3;
+    public final double gravitySpeed = .3;
     public float terminalVelocity = 200;
     public float yVelocity = 0;
     public float xVelocity = 0;
@@ -59,7 +59,8 @@ public class Entity extends Drawable {
     }
 
     public Rectangle getBounds(){
-        return bounds;
+        //return bounds;
+        return new Rectangle(x,y,width,height);
     }
 
 
@@ -70,7 +71,7 @@ public class Entity extends Drawable {
         collideBounds = new Rectangle(x+dx,y+dy,width,height);
         for(Map map: maps){
             for(Entity entity : map.getEntities()){
-                if(collideBounds.intersects(entity.getBounds()) && entity.isCollidable()) {
+                if(collideBounds.intersects(entity.getBounds()) && entity.isCollidable() && entity!=this) {
                     //once you found the colliding tile pass it into this function to get directions
                     return applyDirection(entity);
                 }
@@ -112,7 +113,6 @@ public class Entity extends Drawable {
         Collision touching = isTouching(dx,dy);
 
         if(!touching.happened){//call the police
-
             x += dx;
             y += dy;
         }else{
@@ -149,6 +149,9 @@ public class Entity extends Drawable {
     }
 
     public void tick(){
+
+
+
         moveBy(xVelocity, yVelocity);
         if(hasGravity)yVelocity += gravitySpeed;
 
