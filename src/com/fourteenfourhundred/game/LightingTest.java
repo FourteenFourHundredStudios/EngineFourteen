@@ -1,7 +1,7 @@
-package com.fourteenfourhundred.engine.display;
-
+package com.fourteenfourhundred.game;
 
 import com.fourteenfourhundred.engine.display.Screen;
+import com.fourteenfourhundred.engine.util.Color;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWKeyCallback;
@@ -16,13 +16,12 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 
 
-public class Window {
+public class LightingTest {
 
     private  long window;
     public int WIDTH;
     public int HEIGHT;
     public String title;
-    public Screen screen;
     public double mouseX = 0;
     public double mouseY = 0;
 
@@ -30,23 +29,20 @@ public class Window {
     public static boolean slowMo = false;
     public static int tickSpeed = 10;
 
+    public int x=0;
+
     public static final int RIGHT_CLICK = GLFW.GLFW_MOUSE_BUTTON_2;
     public static final int LEFT_CLICK = GLFW.GLFW_MOUSE_BUTTON_1;
 
     private long variableYieldTime, lastTime;
 
-    public Window(Screen screen,String title, int width, int height) {
+    public LightingTest(String title, int width, int height) {
 
 
-        this.screen = screen;
         this.WIDTH = width;
         this.HEIGHT = height;
         this.title= title;
 
-        screen.width = width;
-        screen.height = height;
-
-       // System.out.println("fwfe");
 
         if (!glfwInit()) {
             System.out.println("GLFW initialization failed.");
@@ -71,24 +67,12 @@ public class Window {
 
             @Override
             public void invoke(long window, int key, int scancode, int action, int mods) {
-                screen.keys[key] = action != GLFW_RELEASE;
+
             }
 
         });
 
-        glfwSetMouseButtonCallback(window, (long window, int button, int action, int mods) -> {
-            if(action == GLFW_PRESS) {
-                screen.onMousePressed(mouseX, mouseY, button);
-            }else if(action == GLFW_RELEASE){
-                screen.onMouseReleased(mouseX, mouseY, button);
-            }
-        });
 
-        glfwSetCursorPosCallback(window, (long window, double x, double y) -> {
-            mouseX = x;
-            mouseY = y;
-            screen.onMouseMoved(x,y);
-        });
 
         glOrtho(0, WIDTH, HEIGHT, 0, 1, -1);
 
@@ -98,7 +82,7 @@ public class Window {
 
         //These are for eventual controller support.
         //org.lwjgl.glfw.GLFW.glfwInit();
-       // System.out.println(glfwGetJoystickName(GLFW_JOYSTICK_1));
+        // System.out.println(glfwGetJoystickName(GLFW_JOYSTICK_1));
 
 
 
@@ -109,6 +93,96 @@ public class Window {
 
     }
 
+
+    public void drawRect(float x, float y, float width, float height, float rot, Color color){
+
+
+
+        glEnable( GL_BLEND );
+
+        glPushMatrix();
+
+        glTranslatef(x, y, 0); // Shifts the position
+        glRotatef(rot, 0, 0, 1);
+
+        byte red = (byte)(color.getRed()-128);
+        byte green = (byte)(color.getGreen()-128);
+        byte blue = (byte)(color.getBlue()-128);
+        byte alpha = (byte)(color.getAlpha()-128);
+
+        glColor4b(red, green, blue, alpha);
+
+        glBegin(GL_QUADS);
+
+        glVertex2f(0.0f, 0.0f);
+        glVertex2f(0.0f, height);
+        glVertex2f(width, height);
+        glVertex2f(width, 0.0f);
+
+        glEnd();
+
+        glPopMatrix();
+
+    }
+
+
+    public FloatBuffer floatBuffer(float[] f){
+        FloatBuffer buffer = BufferUtils.createFloatBuffer(f.length);
+        buffer.put(f);
+        buffer.flip();
+        return buffer;
+    }
+
+    public void paint(){
+
+      //  glEnable(GL_LIGHTING);
+       // glEnable(GL_LIGHT0);
+
+        glEnable(GL_COLOR_MATERIAL);
+        glEnable(GL_LIGHTING);
+        glEnable(GL_LIGHT0);
+
+
+
+        /*
+        FloatBuffer ambient = BufferUtils.createFloatBuffer(4);
+        ambient.put(new float[] { 0.05f, 0.05f, 0.05f, 1f, });
+        ambient.flip();
+
+        FloatBuffer position = BufferUtils.createFloatBuffer(4);
+        position.put(new float[] { 0f, 0f, 0f, 1f, });
+        position.flip();
+
+
+        glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient);
+        glLightfv(GL_LIGHT0, GL_POSITION, position);*/
+
+
+        GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glEnable(GL11.GL_LIGHT0);
+        GL11.glLightModeli(GL11.GL_LIGHT_MODEL_LOCAL_VIEWER, GL11.GL_TRUE);
+
+        GL11.glLightfv(GL11.GL_LIGHT0, GL11.GL_POSITION, floatBuffer(new float[] {100,100,100,100}));
+
+        GL11.glEnable(GL11.GL_COLOR_MATERIAL);
+        GL11.glColorMaterial(GL11.GL_FRONT, GL11.GL_AMBIENT_AND_DIFFUSE);
+
+
+   //     x++;
+
+        drawRect(30,30,30,30,0,Color.RED);
+
+        /*
+
+        FloatBuffer position = BufferUtils.createFloatBuffer(4);
+        float[] posArray = {x, y, x, y};
+        position.put(posArray);
+        position.flip();
+
+
+        GL11.glLightfv(GL11.GL_LIGHT0, GL11.GL_POSITION, position);
+        */
+    }
 
     private void sync(int fps) {
         if (fps <= 0) return;
@@ -157,7 +231,7 @@ public class Window {
             public void run(){
                 while(true){
 
-                    screen.tick();
+
 
                     sync(60);
 
@@ -174,8 +248,13 @@ public class Window {
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-            this.screen.paint();
+            paint();
 
+            //   System.out.print(glfwGetJoystickButtons(GLFW_JOYSTICK_1).array());
+
+            glEnable(GL_LIGHTING);
+            glEnable(GL_LIGHT0);
+            // glLightModelfv(GL_LIGHT_MODEL_AMBIENT, position);
 
             glfwSwapBuffers(window);
             glfwPollEvents();
@@ -186,10 +265,9 @@ public class Window {
         System.exit(0);
     }
 
-    public void setScreen(Screen newScreen){
-        this.screen = newScreen;
+    public static void main(String[] args){
+        new LightingTest("few",500,500);
     }
-
 
 
 

@@ -3,6 +3,10 @@ package com.fourteenfourhundred.engine.drawable;
 import com.fourteenfourhundred.engine.display.Camera;
 import com.fourteenfourhundred.engine.util.Color;
 import com.fourteenfourhundred.engine.util.Rectangle;
+import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
+
+import java.nio.FloatBuffer;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
@@ -43,6 +47,13 @@ public class Drawable {
 
     public void drawRect(float x, float y, float width, float height, float rot, Color color){
 
+        FloatBuffer position = BufferUtils.createFloatBuffer(4);
+        float[] posArray = {x, y, x, y};
+        position.put(posArray);
+        position.flip();
+
+
+        GL11.glLightfv(GL11.GL_LIGHT0, GL11.GL_POSITION, position);
 
         glEnable( GL_BLEND );
 
