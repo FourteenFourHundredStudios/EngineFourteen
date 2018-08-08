@@ -122,7 +122,7 @@ public class Entity extends Drawable {
             oldX = x;
         }
 
-        if(!touching.happened){//call the police
+        if(!touching.happened){
             x += dx;
             y += dy;
 
@@ -184,11 +184,11 @@ public class Entity extends Drawable {
 
     public void tick(){
 
-
-
         moveBy(xVelocity, yVelocity);
 
-        if(hasGravity)yVelocity += gravitySpeed;
+        if(hasGravity){
+            yVelocity += gravitySpeed;
+        }
 
         if( yVelocity > terminalVelocity)yVelocity=terminalVelocity;
 

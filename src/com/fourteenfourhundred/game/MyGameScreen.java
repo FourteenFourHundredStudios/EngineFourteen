@@ -1,10 +1,16 @@
 package com.fourteenfourhundred.game;
 
+import com.fourteenfourhundred.engine.audio.Audio;
 import com.fourteenfourhundred.engine.display.Camera;
 import com.fourteenfourhundred.engine.display.Screen;
 import com.fourteenfourhundred.engine.display.Window;
 import com.fourteenfourhundred.engine.drawable.Map;
 import com.fourteenfourhundred.engine.drawable.entities.tiles.Tile;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 
 
 public class MyGameScreen extends Screen {
@@ -21,14 +27,13 @@ public class MyGameScreen extends Screen {
         player = new Player(30,10);
 
 
-
         addToScreen(map);
         player.attachToMap(map);
         player.attachCamera(cam);
         map.addEntity(player);
 
 
-
+        Audio.playForever("music.wav");
 
         for(int i=0; i<20;i++){
             map.addEntity(new Tile(Tile.size+(i*30),500));
@@ -60,10 +65,11 @@ public class MyGameScreen extends Screen {
 
 ;
             if(player.isTouching(0,player.yVelocity).happened && player.isResting()) {
-
                 player.launch(0, -10);
-
+                Audio.playOnce("jump.wav");
             }
+
+
         }
 
     }
